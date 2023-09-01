@@ -1,0 +1,121 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+}
+
+header {
+    background-color: #1e90ff; /* 濃い水色 */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+header h1 {
+    font-size: 32px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+section {
+    background-color: #ecf0f1;
+    border: 1px solid #d1d1d1;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+.item-input {
+    margin-bottom: 20px;
+}
+
+
+label {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.blue-button {
+    background-color: #3498db; /* 水色 */
+    color: #fff;
+}
+
+.yellow-button {
+    background-color: #f1c40f; /* 黄色 */
+    color: #fff;
+}
+
+.red-button {
+    background-color: #e74c3c; /* 赤色 */
+    color: #fff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+tfoot {
+    background-color: #f1c40f; /* 黄色 */
+    color: #fff;
+    font-weight: bold;
+}
+
+#notification {
+    color: #e74c3c; /* 赤色 */
+    font-weight: bold;
+}
+
+button[style="display: none;"] {
+    display: none;
+}
+
+footer {
+    background-color: #1e90ff; /* 濃い水色 */
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}

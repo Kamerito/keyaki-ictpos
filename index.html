@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レジサイト</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>ICTRoom 販売レジ</h1>
+    </header>
+    <main>
+        <section id="form">
+            <h2>購入フォーム</h2>
+            <div class="item-input">
+                <label for="quantity-A">アクリルキーホルダーA：</label>
+                <input type="number" id="quantity-A" min="0">
+            </div>
+            <div class="item-input">
+                <label for="quantity-B">アクリルキーホルダーB：</label>
+                <input type="number" id="quantity-B" min="0">
+            </div>
+            <input type="text" id="payment" placeholder="預かり金額" style="display: none;">
+
+            <div class="button-container">
+                <button id="calculate-button" class="blue-button">計算</button>
+                <button id="payment-button" class="yellow-button" style="display: none;">合計</button>
+                <button id="payment-complete-button" class="red-button" style="display: none;">完了</button>
+            </div>
+    
+        </section>
+
+        <section id="result">
+            <h2>結果</h2>
+        </section>
+        <section id="data">
+            <h2>販売情報</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>時刻</th>
+                        <th>品目</th>
+                        <th>個数</th>
+                    </tr>
+                </thead>
+                <tbody id="sales-info-table">
+
+                </tbody>
+            </table>
+            <div class="info">
+                <p id="remaining-stock">残りの在庫数（A: 10個, B: 10個）</p>
+                <p id="total-revenue">現在の売上総額: 0円</p>
+            </div>
+            <button id="clear-data-button" class="red-button">営業終了</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 HIROOGAKUEN ICTROOM</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
