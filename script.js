@@ -1,5 +1,3 @@
-// script.js
-
 const calculateButton = document.getElementById("calculate-button");
 const paymentButton = document.getElementById("payment-button");
 const paymentCompleteButton = document.getElementById("payment-complete-button");
