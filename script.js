@@ -17,7 +17,7 @@ const savedSalesInfo = JSON.parse(localStorage.getItem("salesInfo")) || [];
 
 // ページ読み込み時に販売情報をテーブルに表示
 for (const sale of savedSalesInfo) {
-    appendSaleToTable(sale.time, sale.item, sale.quantity);
+    appendSaleToTable(sale.time, sale.item, sale.quantity, sale.paymentMethod);
 }
 
 function showButton(buttonToShow) {
@@ -27,19 +27,20 @@ function showButton(buttonToShow) {
     buttonToShow.style.display = "block";
 }
 
-function appendSaleToTable(time, item, quantity) {
+function appendSaleToTable(time, item, quantity, paymentMethod) {
     const newRow = document.createElement("tr");
-    newRow.innerHTML = `<td>${time}</td><td>${item}</td><td>${quantity}個</td>`;
+    newRow.innerHTML = `<td>${time}</td><td>${item}</td><td>${quantity}個</td><td>${paymentMethod}</td>`;
     salesInfoTable.appendChild(newRow);
 }
 
 calculateButton.addEventListener("click", () => {
     const quantityA = parseInt(document.getElementById("quantity-A").value);
     const quantityB = parseInt(document.getElementById("quantity-B").value);
+    const paymentMethod = document.querySelector('input[name="payment-method"]:checked');
 
-    if (quantityA >= 0 && quantityB >= 0) {
-        const totalPriceA = quantityA * 500;
-        const totalPriceB = quantityB * 500;
+    if (quantityA >= 0 && quantityB >= 0 && paymentMethod) {
+        const totalPriceA = quantityA * 450;
+        const totalPriceB = quantityB * 450;
         const totalAmount = totalPriceA + totalPriceB;
 
         resultArea.innerHTML = `合計金額: ${totalAmount}円`;
@@ -47,7 +48,7 @@ calculateButton.addEventListener("click", () => {
         paymentInput.type = "text"; // テキスト形式での入力に変更
         showButton(paymentButton);
     } else {
-        alert("個数が不正です。");
+        alert("個数または決済方法が不正です。");
     }
 });
 
@@ -60,8 +61,8 @@ paymentButton.addEventListener("click", () => {
 
     const quantityA = parseInt(document.getElementById("quantity-A").value);
     const quantityB = parseInt(document.getElementById("quantity-B").value);
-    const totalPriceA = quantityA * 500;
-    const totalPriceB = quantityB * 500;
+    const totalPriceA = quantityA * 450;
+    const totalPriceB = quantityB * 450;
     const totalAmount = totalPriceA + totalPriceB;
 
     const change = paymentAmount - totalAmount;
@@ -70,12 +71,13 @@ paymentButton.addEventListener("click", () => {
 
         // 販売情報を更新
         const currentTime = new Date().toLocaleTimeString();
-        appendSaleToTable(currentTime, "アクリルキーホルダーA", quantityA);
-        appendSaleToTable(currentTime, "アクリルキーホルダーB", quantityB);
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+        appendSaleToTable(currentTime, "アクリルキーホルダーA", quantityA, paymentMethod);
+        appendSaleToTable(currentTime, "アクリルキーホルダーB", quantityB, paymentMethod);
 
         // ローカルストレージに販売情報を保存
-        savedSalesInfo.push({ time: currentTime, item: "アクリルキーホルダーA", quantity: quantityA });
-        savedSalesInfo.push({ time: currentTime, item: "アクリルキーホルダーB", quantity: quantityB });
+        savedSalesInfo.push({ time: currentTime, item: "アクリルキーホルダーA", quantity: quantityA, paymentMethod: paymentMethod });
+        savedSalesInfo.push({ time: currentTime, item: "アクリルキーホルダーB", quantity: quantityB, paymentMethod: paymentMethod });
         localStorage.setItem("salesInfo", JSON.stringify(savedSalesInfo));
 
         // 在庫と売上を更新
@@ -106,21 +108,17 @@ paymentCompleteButton.addEventListener("click", () => {
 });
 
 clearDataButton.addEventListener("click", () => {
-    const confirmation = prompt("営業を終了しますか？ (終了する場合、'0627'と入力してください)");
-    if (confirmation === "0627") {
-        // ローカルストレージから販売情報を削除
-        localStorage.removeItem("salesInfo");
-        
-        // 販売情報テーブルをクリア
-        salesInfoTable.innerHTML = "";
+    // ローカルストレージのデータを削除
+    localStorage.removeItem("salesInfo");
 
-        stock = { A: 10, B: 10 };
-        revenue = 0;
-        remainingStock.innerHTML = "";
-        totalRevenue.innerHTML = "";
-        resultArea.innerHTML = "";
-        showButton(calculateButton);
-    } else {
-        alert("終了キャンセルしました。");
+    // 販売情報テーブルをクリア
+    while (salesInfoTable.firstChild) {
+        salesInfoTable.removeChild(salesInfoTable.firstChild);
     }
+
+    // 在庫と売上をリセット
+    stock = { A: 10, B: 10 };
+    revenue = 0;
+    remainingStock.innerHTML = `残りの在庫数（A: ${stock.A}個, B: ${stock.B}個）`;
+    totalRevenue.innerHTML = `現在の売上総額: 0円`;
 });
