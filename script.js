@@ -60,8 +60,8 @@ paymentButton.addEventListener("click", () => {
 
     const quantityA = parseInt(document.getElementById("quantity-A").value);
     const quantityB = parseInt(document.getElementById("quantity-B").value);
-    const totalPriceA = quantityA * 450;
-    const totalPriceB = quantityB * 450;
+    const totalPriceA = quantityA * 500;
+    const totalPriceB = quantityB * 500;
     const totalAmount = totalPriceA + totalPriceB;
 
     const change = paymentAmount - totalAmount;
