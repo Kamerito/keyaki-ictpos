@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>ICTRoom 販売レジ</h1>
+        <h1>レジサイト</h1>
     </header>
     <main>
         <section id="form">
@@ -21,16 +21,23 @@
                 <label for="quantity-B">アクリルキーホルダーB：</label>
                 <input type="number" id="quantity-B" min="0">
             </div>
+            <div class="payment-method">
+                <label>決済方法：</label>
+                <input type="radio" id="payment-cash" name="payment-method" value="現金">
+                <label for="payment-cash">現金</label>
+                <input type="radio" id="payment-voucher" name="payment-method" value="金券">
+                <label for="payment-voucher">金券</label>
+                <input type="radio" id="payment-both" name="payment-method" value="金券+現金">
+                <label for="payment-both">金券+現金</label>
+            </div>
             <input type="text" id="payment" placeholder="預かり金額" style="display: none;">
-
             <div class="button-container">
                 <button id="calculate-button" class="blue-button">計算</button>
                 <button id="payment-button" class="yellow-button" style="display: none;">合計</button>
                 <button id="payment-complete-button" class="red-button" style="display: none;">完了</button>
             </div>
-    
+            
         </section>
-
         <section id="result">
             <h2>結果</h2>
         </section>
@@ -42,10 +49,11 @@
                         <th>時刻</th>
                         <th>品目</th>
                         <th>個数</th>
+                        <th>決済方法</th>
                     </tr>
                 </thead>
                 <tbody id="sales-info-table">
-
+                    <!-- ここに販売情報が追加されます -->
                 </tbody>
             </table>
             <div class="info">
@@ -54,9 +62,10 @@
             </div>
             <button id="clear-data-button" class="red-button">営業終了</button>
         </section>
+
     </main>
     <footer>
-        <p>&copy; 2023 HIROOGAKUEN ICTROOM</p>
+        <p>&copy; 2023 レジサイト</p>
     </footer>
     <script src="script.js"></script>
 </body>
