@@ -38,8 +38,8 @@ calculateButton.addEventListener("click", () => {
     const quantityB = parseInt(document.getElementById("quantity-B").value);
 
     if (quantityA >= 0 && quantityB >= 0) {
-        const totalPriceA = quantityA * 450;
-        const totalPriceB = quantityB * 450;
+        const totalPriceA = quantityA * 500;
+        const totalPriceB = quantityB * 500;
         const totalAmount = totalPriceA + totalPriceB;
 
         resultArea.innerHTML = `合計金額: ${totalAmount}円`;
